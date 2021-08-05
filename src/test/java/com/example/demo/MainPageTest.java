@@ -20,23 +20,36 @@ public class MainPageTest {
         };
     }
 
+    /**
+     *
+     */
     @BeforeClass(alwaysRun = true)
     public static void setUpAll() {
         Configuration.browserSize = "1280x800";
         SelenideLogger.addListener("allure", new AllureSelenide());
     }
 
+    /**
+     *
+     */
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
         open("https://www.jetbrains.com/");
     }
 
+    /**
+     *
+     * @param searchTerm
+     */
     @Test(dataProvider ="search-terms", groups = { "search"})
     public void search(String searchTerm) {
         mainPage.searchForItem(searchTerm);
         Assert.assertEquals(mainPage.getSearchResultPopDownText(), searchTerm);
     }
 
+    /**
+     *
+     */
     @Test(groups = {"navigation"})
     public void navigationToAllTools() {
         mainPage.clickSeeAllToolsBtn();

@@ -4,7 +4,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$x;
 
 public class MainPage {
     HelperMethods helperMethods = new HelperMethods();
@@ -14,6 +13,11 @@ public class MainPage {
     public SelenideElement searchField = $("[data-test='search-input']");
     public SelenideElement searchResultPopDown = $("span.quick-search__results-query");
 
+    /**
+     * Searches for the passed in item
+     * @param item
+     * @author Devon Jones
+     */
     public void searchForItem(String item){
         this.searchButton.shouldBe(Condition.visible);
         this.searchButton.click();
@@ -21,9 +25,15 @@ public class MainPage {
         this.searchField.sendKeys(item);
     }
 
+    /**
+     * Returns the text in the search box dropdown
+     * @return text
+     * @author Devon Jones
+     */
     public String getSearchResultPopDownText(){
         return this.searchResultPopDown.getText();
     }
+
 
     public void clickSeeAllToolsBtn(){
         this.seeAllToolsButton.click();
