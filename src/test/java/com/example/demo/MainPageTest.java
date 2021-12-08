@@ -14,14 +14,14 @@ public class MainPageTest {
     MainPage mainPage = new MainPage();
 
     @DataProvider(name = "search-terms")
-    public Object[][] dataProvFunc(){
+    public Object[][] dataProvFunc() {
         return new Object[][]{
-                {"Selenium"},{"TestNg"}
+                {"Selenium"}, {"TestNg"}
         };
     }
 
     /**
-     *
+     * Sets browser size and adds a lister upon completion for the test reporter
      */
     @BeforeClass(alwaysRun = true)
     public static void setUpAll() {
@@ -30,7 +30,7 @@ public class MainPageTest {
     }
 
     /**
-     *
+     * Opens a browser and navigates to the url
      */
     @BeforeMethod(alwaysRun = true)
     public void setUp() {
@@ -38,17 +38,18 @@ public class MainPageTest {
     }
 
     /**
+     * Searches for each term from the dataprovider and asserts true if the popup text contains the search terms
      *
      * @param searchTerm
      */
-    @Test(dataProvider ="search-terms", groups = { "search"})
+    @Test(dataProvider = "search-terms", groups = {"search"})
     public void search(String searchTerm) {
         mainPage.searchForItem(searchTerm);
         Assert.assertEquals(mainPage.getSearchResultPopDownText(), searchTerm);
     }
 
     /**
-     *
+     * Clicks the See All Tools button and asserts the correct title appears
      */
     @Test(groups = {"navigation"})
     public void navigationToAllTools() {
